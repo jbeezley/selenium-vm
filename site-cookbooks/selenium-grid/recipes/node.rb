@@ -16,7 +16,7 @@ node.override['selenium-grid']['grid']['hub']['url'] = '192.168.10.10'
 #
 # Install packages
 #
-%w(firefox x11vnc xorg unzip).each do |pkg|
+%w(firefox unzip).each do |pkg|
   package pkg do
     action :install
   end
@@ -74,21 +74,6 @@ end
 #
 # Start required services
 #
-supervisor_service 'startx' do
-    command 'startx'
-    user 'root'
-    notifies :start, 'supervisor_service[x11vnc]'
-    action [ :enable, :start ]
-end
-
-supervisor_service 'x11vnc' do
-    command 'x11vnc -safer -httpdir /usr/share/vnc-java/ -httpport 5800'
-    user 'root'
-    notifies :start, 'supervisor_service[node]'
-    action [ :enable, :start ]
-end
-
-
 supervisor_service 'node' do
     environment 'DISPLAY' => ':0'
     user 'root'

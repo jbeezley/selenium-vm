@@ -35,7 +35,7 @@ Vagrant::configure("2") do |config|
 
       selenium_grid.vm.provision :chef_solo do |chef_solo|
         chef_solo.cookbooks_path = chef_solo_cookbook_path
-        chef_solo.add_recipe 'selenium-grid'
+        chef_solo.add_recipe 'selenium-grid::hub'
       end
   end
 
