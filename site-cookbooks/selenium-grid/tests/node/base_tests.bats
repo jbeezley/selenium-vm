@@ -19,11 +19,11 @@
 }
 
 @test "should run chromedriver v2.8" {  
-    timeout 1s /opt/local/selenium_grid/chromedriver | grep v2.8
+    timeout 1s /opt/local/selenium_grid/chromedriver | grep v2.9
 }
 
 @test "selenium-server should exist" {
-      test -f /opt/local/selenium_grid/selenium-server-standalone-2.39.0.jar 
+      test -f /opt/local/selenium_grid/selenium-server-standalone-2.42.2.jar 
 }
 
 @test "config file should exist" {
