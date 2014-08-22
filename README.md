@@ -19,3 +19,14 @@ To bring up hub + node vm `vagrant up selenium-grid`
 ## Add more nodes
 `vagrant up node1` up to `node3`
 Add more vms to your Vagrantfile if this not sufficient.
+
+## To get webgl working
+`vagrant plugin install vagrant-vbguest`
+
+After starting the nodes ssh in and run
+```
+sudo /etc/init.d/supervisor stop
+sudo /etc/init.d/supervisor start
+```
+
+TODO: Make that happen automatically.
