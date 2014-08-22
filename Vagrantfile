@@ -12,6 +12,12 @@ test -d /opt/chef || {
 }
 EOF
 
+$supervisorstart = <<SCRIPT
+#!/bin/sh
+/etc/init.d/supervisor stop
+/etc/init.d/supervisor start
+SCRIPT
+
 Vagrant::configure("2") do |config|
   config.vm.box = "box-cutter/ubuntu1404-desktop"
 
@@ -57,6 +63,8 @@ Vagrant::configure("2") do |config|
         chef_solo.cookbooks_path = chef_solo_cookbook_path
         chef_solo.add_recipe 'selenium-grid::node'
       end
+
+      grid_node.vm.provision "shell", run: "always", inline: $supervisorstart
   end
 
 #    # Configure Selenium Node
