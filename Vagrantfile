@@ -12,9 +12,13 @@ test -d /opt/chef || {
 }
 EOF
 
+# supervisor needs to start after X11, but I don't know how
+# to disable autostart from the chef recipe, so just stop
+# and restart it after boot here.
 $supervisorstart = <<SCRIPT
 #!/bin/sh
 /etc/init.d/supervisor stop
+sleep 5
 /etc/init.d/supervisor start
 SCRIPT
 
